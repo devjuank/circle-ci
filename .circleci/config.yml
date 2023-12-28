@@ -6,8 +6,15 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: echo hola
-
+  saybye:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo pre bye
+      - run: echo bye
+      - run: echo post bye  
 workflows:
   hello:
     jobs:
       - sayhello
+      - saybye
