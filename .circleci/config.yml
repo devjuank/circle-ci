@@ -24,3 +24,14 @@ workflows:
       - saybye:
           requires:
             - sayhello
+  workflows3-approval:
+    jobs:
+      - sayhello
+      - approval:
+          type: approval
+          requires:
+            - sayhello
+      - saybye:
+        requires:
+          - approval
+
