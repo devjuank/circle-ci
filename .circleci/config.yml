@@ -30,7 +30,7 @@ workflows:
       - approval:
           type: approval
           requires:
-            - saluda
+            - sayhello
       - saybye:
           requires:
             - approval
