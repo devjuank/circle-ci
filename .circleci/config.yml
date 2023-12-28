@@ -14,7 +14,13 @@ jobs:
       - run: echo bye
       - run: echo post bye  
 workflows:
-  hello:
+  workflow1:
     jobs:
       - sayhello
       - saybye
+  workflow2:
+    jobs:
+      - sayhello
+      - saybye:
+          requires:
+            - sayhello
