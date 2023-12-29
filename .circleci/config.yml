@@ -3,20 +3,21 @@ version: 2.1
 parameters:
   nombre:
     type: string
-    default: juank
+    default: juank-pipeline-default
 
 jobs:
   sayhello:
     parameters:
     nombre:
       type: string
-      default: juankjob
+      default: juank-job-default
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo hola << pipeline.parameters.nombre >>
+      - run: echo hola << parameters.nombre >>
 
 workflows:
   workflow1:
     jobs:
-      - sayhello
+      - sayhello:
+          nombre: juank
