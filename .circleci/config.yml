@@ -1,26 +1,29 @@
 version: 2.1
 
-parameters:
-  nameUser:
-    type: string
-    default: juank-pipeline-default
+commands:
+  giveme-time-and-wait:
+    steps:
+      - run: date && sleep 10
 
 jobs:
-  sayhello:
-    parameters:
-      nameUser:
-        type: string
-        default: juank-job-default
+  say-hello:
+    docker:
+      - image: ubuntu:latest
+    steps:
+      - giveme-time-and-wait
+      - run: echo hola
+      - giveme-time-and-wait
+  say-bye:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo hola << parameters.nameUser >>
+      - giveme-time-and-wait
+      - run: echo Byeee
+      - giveme-time-and-wait
 
 workflows:
   workflow1:
     jobs:
-      - sayhello:
-          nameUser: juank
-  workflow2:
-    jobs:
-      - sayhello        
+      - say-hello
+      - say-bye
+
