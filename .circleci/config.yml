@@ -37,7 +37,7 @@ workflows:
   workflow4-trigger:
     triggers:
       - schedule:
-          cron: "22 0 * * *"
+          cron: "25 0 * * *"
           filters:
             branches:
               only:
