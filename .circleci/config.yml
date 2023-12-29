@@ -1,50 +1,18 @@
 version: 2.1
 
+parameters:
+  nombre:
+    type: string
+    default: juank
+
 jobs:
   sayhello:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo hola
-  saybye:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run: echo pre bye
-      - run: echo bye
-      - run: echo post bye  
+      - run: echo hola << pipeline.parameters.nombre >>
+
 workflows:
   workflow1:
     jobs:
       - sayhello
-      - saybye
-  workflow2:
-    jobs:
-      - sayhello
-      - saybye:
-          requires:
-            - sayhello
-  workflows3-approval:
-    jobs:
-      - sayhello
-      - approval:
-          type: approval
-          requires:
-            - sayhello
-      - saybye:
-          requires:
-            - approval
-  workflow4-trigger:
-    triggers:
-      - schedule:
-          cron: "30 0 * * *"
-          filters:
-            branches:
-              only:
-                master
-    jobs:
-      - sayhello
-      - saybye:
-          requires:
-            - sayhello
-      
