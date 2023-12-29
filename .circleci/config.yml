@@ -34,4 +34,17 @@ workflows:
       - saybye:
           requires:
             - approval
+  workflow4-trigger:
+    triggers:
+      - schedule:
+          cron: "22 0 * * *"
+          filters:
+            branches:
+              only:
+                master
+    jobs:
+      - sayhello
+      - saybye:
+          requires:
+            - sayhello
       
