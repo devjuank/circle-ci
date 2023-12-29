@@ -7,7 +7,7 @@ commands:
         type: integer
         default: 10
     steps:
-      - run: date && sleep 10
+      - run: date && sleep << parameters.time-wait >>
 
 jobs:
   say-hello:
