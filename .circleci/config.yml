@@ -10,8 +10,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       - install-aws-cli
+      - checkout
       - run: find
-
 workflows:
   workflow1:
     jobs:
