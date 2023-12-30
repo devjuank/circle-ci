@@ -10,7 +10,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       - install-aws-cli
-      - checkout
+      - checkout:
+          path: app-circle-ci/
       - run: find
 workflows:
   workflow1:
