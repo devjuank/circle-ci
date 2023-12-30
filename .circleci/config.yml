@@ -1,35 +1,20 @@
 version: 2.1
 
 commands:
-  giveme-time-and-wait:
-    parameters:
-      time-wait:
-        type: integer
-        default: 10
+  install-aws-cli:
     steps:
-      - run: date && sleep << parameters.time-wait >>
-
+      - run: echo instalalando cli aws
 jobs:
-  say-hello:
+  install-dependencies:
     docker:
       - image: ubuntu:latest
     steps:
-      - giveme-time-and-wait
-      - run: echo hola
-      - giveme-time-and-wait
-  say-bye:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - giveme-time-and-wait:
-          time-wait: 5
-      - run: echo Byeee
-      - giveme-time-and-wait:
-          time-wait: 20
+      - install-aws-cli
+      - checkout
+      - run: find
 
 workflows:
   workflow1:
     jobs:
-      - say-hello
-      - say-bye
-
+      - install-dependencies
+          
